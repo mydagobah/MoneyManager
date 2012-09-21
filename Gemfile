@@ -6,8 +6,9 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # only use sqlite in dev 
-group :development do
+group :development, :test do
   gem 'sqlite3', '1.3.5'
+  gem 'rspec-rails', '2.11.0'
 end
 
 # Gems used only for assets and not required

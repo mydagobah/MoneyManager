@@ -1,11 +1,12 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
+      <%= link_to "Money Manager", 'http://localhost:3000', id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li>Home</li>
-          <li>Help</li>
-          <li>Sign in</li>
+          <li><%= link_to "Home",    '#' %></li>
+          <li><%= link_to "Help",    '#' %></li>
+          <li><%= link_to "Sign in", '#' %></li>
         </ul>
       </nav>
     </div>

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
-  
+
   # ensuring email uniqueness by downcasing the email attribute
   before_save { |user| user.email = email.downcase }
 

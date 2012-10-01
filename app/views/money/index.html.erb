@@ -1,27 +1,31 @@
+<% provide(:title, 'Money list') %>
 <h1>Listing money</h1>
 
-<table>
-  <tr>
-    <th>Value</th>
-    <th>Description</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @money %>
+  <table>
+    <tr>
+      <th>Value</th>
+      <th>Description</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @money.each do |money| %>
-  <tr>
-    <td><%= money.value %></td>
-    <td><%= money.description %></td>
-    <td><%= money.user_id %></td>
-    <td><%= link_to 'Show', money %></td>
-    <td><%= link_to 'Edit', edit_money_path(money) %></td>
-    <td><%= link_to 'Destroy', money, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% @money.each do |money| %>
+    <tr>
+      <td><%= money.value %></td>
+      <td><%= money.description %></td>
+      <td><%= money.user_id %></td>
+      <td><%= link_to 'Show', money %></td>
+      <td><%= link_to 'Edit', edit_money_path(money) %></td>
+      <td><%= link_to 'Destroy', money, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <h1>You don't have any money yet.</h1>
 <% end %>
-</table>
-
 <br />
 
 <%= link_to 'New Money', new_money_path %>

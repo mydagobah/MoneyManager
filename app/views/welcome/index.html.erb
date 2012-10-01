@@ -1,11 +1,21 @@
 <% provide(:title, 'Money Manager') %>
-<h1>Welcome to MoneyManager</h1>
+<h2>A one-stop App to master your money safely</h2>
 <div class="welcome">
   <div class="left-panel">
     <%= image_tag("logo.jpeg", :alt => "Money Manger") %>
   </div>
   <div class="right-panel">
-    <p>Where is my money going? Please sign in and find it out.</p>
+    <p>Please sign in and find it out. </p>
+        <%= form_for(:session, url: sessions_path) do |f| %>
+
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+
+          <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+        <% end %>
   </div>
 </div>
 

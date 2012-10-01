@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
       flash[:success] = "Welcome to Money Manager!"
       redirect_to @user
     else
@@ -14,6 +15,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if signed_in?
+      @user = User.find(params[:id])
+      render 'show'
+    else
+      redirect_to root_url
+    end
   end
 end

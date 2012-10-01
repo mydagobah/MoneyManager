@@ -10,7 +10,6 @@ $grayMediumLight: #eaeaea;
     box-sizing: border-box;
 }
 
-
 /* universal */
 
 body {
@@ -65,7 +64,7 @@ p {
 #logo {
     float: left;
     margin-right: 10px;
-    font-size: 1.7em;
+    font-size: 1.5em;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: -1px;
@@ -76,6 +75,12 @@ p {
         color: #fff;
         text-decoration: none;
     }
+}
+
+.header-text {
+    padding-top: 9px;
+    margin-right: 20px;
+    color: #FF8F00;
 }
 
 
@@ -103,20 +108,6 @@ footer {
             float: left;
             margin-left: 10px;
         }
-    }
-}
-
-.welcome {
-    overflow: auto;
-    width: 100%;
-
-    .left-panel {
-        float: left;
-        width: 45%;
-    }
-    .right-panel {
-        float: left;
-        width: 45%;
     }
 }
 
@@ -162,7 +153,7 @@ aside {
 /* forms */
 
 input, textarea, select, .uneditable-input {
-    border: 1px solid #bbb;
+   // border: 1px solid #bbb;
     width: 100%;
     padding: 10px;
     height: auto !important;
@@ -181,5 +172,23 @@ input, textarea, select, .uneditable-input {
 .field_with_errors {
     @extend .control-group;
     @extend .error;
+    display: inline;
+}
+
+.welcome {
+    overflow: auto;
+    width: 100%;
+    p {
+        font-weight: bold;
+        padding-bottom: 15px;
+    }
+    .left-panel {
+        float: left;
+        width: 50%;
+    }
+    .right-panel {
+        float: left;
+        width: 40%;
+    }
 }
 

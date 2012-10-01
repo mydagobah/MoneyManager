@@ -7,6 +7,12 @@ gem 'bcrypt-ruby', '3.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# only use for testing
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '4.1.0'
+end
+
 # only use sqlite in dev 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -18,7 +24,6 @@ end
 group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'coffee-rails', '3.2.2'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 

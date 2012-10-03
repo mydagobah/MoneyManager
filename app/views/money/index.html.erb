@@ -1,22 +1,22 @@
 <% provide(:title, 'Money list') %>
 <h1>Listing money</h1>
 
-<% if @money %>
+<% if current_user.money %>
   <table>
     <tr>
       <th>Value</th>
       <th>Description</th>
-      <th>User</th>
+      <th>Date</th>
       <th></th>
       <th></th>
       <th></th>
     </tr>
 
-  <% @money.each do |money| %>
+  <% current_user.money.each do |money| %>
     <tr>
       <td><%= money.value %></td>
       <td><%= money.description %></td>
-      <td><%= money.user_id %></td>
+      <td><%= money.created_at %></td>
       <td><%= link_to 'Show', money %></td>
       <td><%= link_to 'Edit', edit_money_path(money) %></td>
       <td><%= link_to 'Destroy', money, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,8 +24,8 @@
   <% end %>
   </table>
 <% else %>
-  <h1>You don't have any money yet.</h1>
+  <h3>You don't have any money yet.</h3>
 <% end %>
 <br />
 
-<%= link_to 'New Money', new_money_path %>
+<%= link_to 'Add New', new_money_path %>

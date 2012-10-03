@@ -17,6 +17,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:remember_token) }
+  it { should respond_to(:money) }
 
   it { should be_valid }
 
@@ -102,5 +103,19 @@ describe User do
     it { @user.remember_token.should_not be_blank }
   end
 
+  describe "micropost association" do
+    before { @user.save }
 
+    let!(:older_money) do
+      FactoryGirl.create(:money, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_money) do
+      FactoryGirl.create(:money, user: @user, created_at: 1.hour.ago)
+    end
+    
+    it "should have the right money in the right order" do
+      @user.money.should == [newer_money, older_money]
+    end
+
+  end
 end

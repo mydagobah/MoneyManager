@@ -2,12 +2,18 @@ class MoneyController < ApplicationController
   # GET /money
   # GET /money.json
   def index
-    @money = Money.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @money }
+    if signed_in?
+      render 'index'
+    else
+      flash[:notice] = "Please sign in first."
+      redirect_to controller: 'welcome', action: 'index'
     end
+      #@money = Money.find_by_user_id(current_user.id)
+
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @money }
+    #end
   end
 
   # GET /money/1
@@ -40,7 +46,8 @@ class MoneyController < ApplicationController
   # POST /money
   # POST /money.json
   def create
-    @money = Money.new(params[:money])
+    @money = current_user.money.build(params[:money])
+ #   @money = Money.new(params[:money])
 
     respond_to do |format|
       if @money.save

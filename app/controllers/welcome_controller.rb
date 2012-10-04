@@ -4,4 +4,8 @@ class WelcomeController < ApplicationController
       render 'money/index' 
     end
   end
+
+  def about
+    render 'about'
+  end
 end

@@ -11,6 +11,7 @@ MoneyManager::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/about',   to: 'welcome#about'
   match '/money-list', to: 'money#list', as: 'money_list'
+  match '/money-search', to: 'money#search', as: 'money_search'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

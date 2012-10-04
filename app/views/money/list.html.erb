@@ -47,11 +47,16 @@
 <div id="new-link"><%= link_to 'Add New', new_money_path %></div>
 
 
-<%= form_tag(:url => {:controller => 'money', :action => 'search'}, :class => 'search') do %>
-  <%= text_field_tag :query, nil, :placeholder => 'Search here... ' %>
-  <%= submit_tag "Search", class: "search" %>
+<%= form_tag({}, {:id => 'search'}) do %>
+  <%= text_field_tag('query', params[:query], :placeholder => 'Search here ...') %>
 <% end %>
 
+<%= observe_field 'query', :url => {:controller => "money", :action => "search"},
+      :update => "search_results",
+      :frequency => 1,
+      :with => "query" %>
+
 <div id="search_results">
+Here goes results.
 </div>
 

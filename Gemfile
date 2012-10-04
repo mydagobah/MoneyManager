@@ -31,6 +31,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
+gem 'prototype-rails', "~>3.2.1"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

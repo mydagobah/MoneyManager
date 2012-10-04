@@ -80,12 +80,19 @@ class MoneyController < ApplicationController
   end
 
   def search
-    query = params[:query]
+    q = params[:query]
 
-    @search_results = query
-    respond_to do |format|
-      format.html { redirect_to :money_list}
-      format.js
+    if q
+      all = current_user.money
+      @search_results = Array.new
+      if !all.empty?
+        all.each do |m|
+          if m[:description] =~ /#{q}/i
+            @search_results << m
+          end
+        end
+      end
+      render :partial => 'search', :layout => false, :locals => {:searchresults => @search_results}
     end
   end
 

@@ -1,6 +1,44 @@
 <% if params[:query] == "" %>
-<% elsif searchresults.length == 0 %>
+<% elsif searchresults.empty? %>
   <p>No entry found ....</p>
 <% else %>
-  Here goes the found list.
+    <table id="ver-zebra">
+      <colgroup>
+        <col class="vzebra-even" />
+        <col class="vzebra-odd" />
+        <col class="vzebra-even" />
+        <col class="vzebra-odd" />
+        <col class="vzebra-even" />
+        <col class="vzebra-odd" />
+        <col class="vzebra-even" />
+        <col class="vzebra-hidden" />
+      </colgroup>
+
+      <thead><tr>
+        <th scope="col" width='1%'>No</th>
+        <th scope="col" width='10%'>Date</th>
+        <th scope="col" width='60%'>Description</th>
+        <th scope="col">Year</th>
+        <th scope="col">Month</th>
+        <th scope="col" width='10%'>Value</th>
+        <th scope="col">Type</th>
+        <th scope="col" width='5%'></th>
+      </tr></thead>
+
+      <tbody>
+      <% searchresults.each_with_index do |money, id| %>
+        <tr>
+        <td><%= id+1 %></td>
+        <td><%= money.created_at.to_s(:create_time) %></td>
+        <td class="entry-edit"><%= link_to "#{money.description}", edit_money_path(money) %></td>
+        <td></td>
+        <td></td>
+        <td><%= money.value %></td>
+        <td></td>
+        <td class="entry-destroy"><%= link_to 'X', money, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <%= params[:query] %>
 <% end %>

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       sign_in user
       @money = Money.find_by_user_id(user.id)
-      redirect_to :controller => 'money', :action => 'index'
+      redirect_to :controller => 'money', :action => 'list'
     else
       flash.now[:error] = "Invalid Email/Password combination"
       render 'welcome/index'

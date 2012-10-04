@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to Money Manager!"
-      redirect_to @user
+      redirect_to :controller => 'money', :action => 'list'
     else
       render 'new'
     end

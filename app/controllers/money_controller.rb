@@ -1,19 +1,13 @@
 class MoneyController < ApplicationController
   # GET /money
   # GET /money.json
-  def index
+  def list
     if signed_in?
-      render 'index'
+      render 'list'
     else
       flash[:notice] = "Please sign in first."
       redirect_to controller: 'welcome', action: 'index'
     end
-      #@money = Money.find_by_user_id(current_user.id)
-
-    #respond_to do |format|
-    #  format.html # index.html.erb
-    #  format.json { render json: @money }
-    #end
   end
 
   # GET /money/1
@@ -82,9 +76,17 @@ class MoneyController < ApplicationController
     @money = Money.find(params[:id])
     @money.destroy
 
+    redirect_to :controller => 'money', :action => 'list'
+  end
+
+  def search
+    query = params[:query]
+
+    @search_results = query
     respond_to do |format|
-      format.html { redirect_to money_index_url }
-      format.json { head :no_content }
+      format.html { redirect_to :money_list}
+      format.js
     end
   end
+
 end

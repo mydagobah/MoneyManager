@@ -1,7 +1,9 @@
 class WelcomeController < ApplicationController
   def index
     if signed_in?
-      render 'money/index' 
+      redirect_to controller: 'money', action: 'list'
+    else
+      render 'index'
     end
   end
 

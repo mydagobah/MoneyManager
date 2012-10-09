@@ -1,5 +1,5 @@
 class Money < ActiveRecord::Base
-  attr_accessible :description, :value
+  attr_accessible :description, :value, :year, :month, :category
   belongs_to :user
 
   validates :description, presence: true, length: { maximum: 100 }

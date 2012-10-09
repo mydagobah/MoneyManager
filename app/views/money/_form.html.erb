@@ -1,3 +1,4 @@
+<div class="edit-form">
 <%= form_for(@money) do |f| %>
   <% if @money.errors.any? %>
     <div id="error_explanation">
@@ -19,7 +20,20 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :month %><br />
+    <%= f.text_field :month %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

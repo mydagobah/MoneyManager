@@ -11,6 +11,8 @@ describe Money do
   it { should respond_to(:value) }
   it { should respond_to(:description) }
   it { should respond_to(:user_id) }
+  it { should respond_to(:category) }
+  it { should respond_to(:year) }
   its(:user) { should == user }
   it { should be_valid }
 

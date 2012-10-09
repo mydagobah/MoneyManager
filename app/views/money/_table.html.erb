@@ -17,7 +17,7 @@
     <th scope="col">Year</th>
     <th scope="col">Month</th>
     <th scope="col" width='10%'>Value</th>
-    <th scope="col">Type</th>
+    <th scope="col">Category</th>
     <th scope="col" width='5%'></th>
   </tr></thead>
 
@@ -27,10 +27,10 @@
     <td><%= id+1 %></td>
     <td><%= money.created_at.to_s(:create_time) %></td>
     <td class="entry-edit"><%= link_to "#{money.description}", edit_money_path(money) %></td>
-    <td></td>
-    <td></td>
+    <td><%= money.year %></td>
+    <td><%= money.month %></td>
     <td><%= money.value %></td>
-    <td></td>
+    <td><%= money.category %></td>
     <td class="entry-destroy"><%= link_to 'X', money, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
   <% end %>

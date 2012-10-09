@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001053530) do
+ActiveRecord::Schema.define(:version => 20121009032157) do
 
   create_table "money", :force => true do |t|
     t.float    "value"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20121001053530) do
     t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "category"
+    t.string   "year"
+    t.string   "month"
   end
 
   add_index "money", ["user_id", "created_at"], :name => "index_money_on_user_id_and_created_at"

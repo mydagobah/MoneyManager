@@ -3,7 +3,7 @@ class MoneyController < ApplicationController
   # GET /money.json
   def list
     if signed_in?
-      render 'list'
+        render 'list'
     else
       flash[:notice] = "Please sign in first."
       redirect_to controller: 'welcome', action: 'index'
@@ -87,7 +87,7 @@ class MoneyController < ApplicationController
       @search_results = Array.new
       if !all.empty?
         all.each do |m|
-          if m[:description] =~ /#{q}/i
+          if m[:description] =~ /^#{q}/i
             @search_results << m
           end
         end

@@ -2,59 +2,25 @@
 <h1>Money List</h1>
 
 <% unless current_user.money.empty? %>
-  <table id="ver-zebra">
-    <colgroup>
-      <col class="vzebra-even" />
-      <col class="vzebra-odd" />
-      <col class="vzebra-even" />
-      <col class="vzebra-odd" />
-      <col class="vzebra-even" />
-      <col class="vzebra-odd" />
-      <col class="vzebra-even" />
-      <col class="vzebra-hidden" />
-    </colgroup>
+  <%= form_tag({}, {:id => 'search'}) do %>
+    <%= text_field_tag('query', params[:query], :placeholder => 'Search here ...') %>
+  <% end %>
 
-    <thead><tr>
-      <th scope="col" width='1%'>No</th>
-      <th scope="col" width='10%'>Date</th>
-      <th scope="col" width='60%'>Description</th>
-      <th scope="col">Year</th>
-      <th scope="col">Month</th>
-      <th scope="col" width='10%'>Value</th>
-      <th scope="col">Type</th>
-      <th scope="col" width='5%'></th>
-    </tr></thead>
+  <%= observe_field 'query', 
+        :url => {:controller => "money", :action => "search"},
+        :update => "search_results",
+        :frequency => 1,
+        :with => "query" 
+  %>
+  <div id="search_results"></div>
 
-    <tbody>
-    <% current_user.money.each_with_index do |money, id| %>
-      <tr>
-      <td><%= id+1 %></td>
-      <td><%= money.created_at.to_s(:create_time) %></td>
-      <td class="entry-edit"><%= link_to "#{money.description}", edit_money_path(money) %></td>
-      <td></td>
-      <td></td>
-      <td><%= money.value %></td>
-      <td></td>
-      <td class="entry-destroy"><%= link_to 'X', money, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <%= render :partial => "table", :locals => {:money_list => current_user.money } %>
 <% else %>
-  <h3>You don't have any money yet.</h3>
+  <div class="none-list">
+    <h3>You don't have any money yet.</h3>
+  </div>
 <% end %>
 
 <div id="new-link"><%= link_to 'Add New', new_money_path %></div>
 
-
-<%= form_tag({}, {:id => 'search'}) do %>
-  <%= text_field_tag('query', params[:query], :placeholder => 'Search here ...') %>
-<% end %>
-
-<%= observe_field 'query', :url => {:controller => "money", :action => "search"},
-      :update => "search_results",
-      :frequency => 1,
-      :with => "query" %>
-
-<div id="search_results"></div>
 
